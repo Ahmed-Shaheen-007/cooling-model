@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newton's Law of Cooling - Mathematical Model</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- MathJax for equation rendering -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <!-- Chart.js for visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- MathJax configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1 class="title">Mathematical Model</h1>
+            <h2 class="subtitle">Newton's Law of Cooling</h2>
+        </header>
+
+        <!-- Equation Display Section -->
+        <section class="equations-section">
+            <div class="equation-container">
+                <h3>Differential Equation</h3>
+                <div class="equation">
+                    $$\frac{dT}{dt} = -k(T(t) - T_{env})$$
+                </div>
+            </div>
+            
+            <div class="equation-container">
+                <h3>Solution</h3>
+                <div class="equation">
+                    $$T(t) = T_{env} + (T_0 - T_{env})e^{-kt}$$
+                </div>
+            </div>
+        </section>
+
+        <!-- Explanation Section -->
+        <section class="explanation-section">
+            <h3>Variable Definitions</h3>
+            <div class="variables-grid">
+                <div class="variable-item">
+                    <span class="variable">$T(t)$:</span>
+                    <span class="description">Temperature at time $t$</span>
+                </div>
+                <div class="variable-item">
+                    <span class="variable">$T_{env}$:</span>
+                    <span class="description">Ambient (environmental) temperature</span>
+                </div>
+                <div class="variable-item">
+                    <span class="variable">$T_0$:</span>
+                    <span class="description">Initial temperature at $t = 0$</span>
+                </div>
+                <div class="variable-item">
+                    <span class="variable">$k$:</span>
+                    <span class="description">Cooling constant (positive value)</span>
+                </div>
+                <div class="variable-item">
+                    <span class="variable">$t$:</span>
+                    <span class="description">Time (in minutes)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Calculator Section -->
+        <section class="calculator-section">
+            <h3>Interactive Calculator</h3>
+            <div class="calculator-container">
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="t0">Initial Temperature ($T_0$):</label>
+                        <input type="number" id="t0" placeholder="e.g., 100" step="0.1">
+                        <span class="unit">°C</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="tenv">Ambient Temperature ($T_{env}$):</label>
+                        <input type="number" id="tenv" placeholder="e.g., 20" step="0.1">
+                        <span class="unit">°C</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="k">Cooling Constant ($k$):</label>
+                        <input type="number" id="k" placeholder="e.g., 0.05" step="0.001" min="0">
+                        <span class="unit">min⁻¹</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="t">Time ($t$):</label>
+                        <input type="number" id="t" placeholder="e.g., 30" step="0.1" min="0">
+                        <span class="unit">min</span>
+                    </div>
+                </div>
+                
+                <div class="button-container">
+                    <button id="calculate-btn" class="calculate-button">Calculate T(t)</button>
+                    <button id="plot-btn" class="plot-button">Generate Plot</button>
+                </div>
+                
+                <div id="result-container" class="result-container">
+                    <div id="result" class="result"></div>
+                    <div id="error" class="error"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chart Section -->
+        <section class="chart-section">
+            <h3>Temperature vs Time Visualization</h3>
+            <div class="chart-container">
+                <canvas id="temperatureChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Newton's Law of Cooling describes the rate at which an exposed body changes temperature through radiation.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
